@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mukesh Kumar - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg"></canvas>
+ <!-- Header -->
+    <header>
+        <h1>Mukesh Kumar</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Hero Section with 3D Model -->
+    <section id="hero">
+        <div class="hero-text">
+            <h2>Web Developer | MERN Stack | Freelancer</h2>
+            <p>Creating Modern & Scalable Web Solutions.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hello! I'm Mukesh Kumar, a passionate Web Developer. I specialize in MERN Stack and PHP.</p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="hero-text"><h2>Projects</h2></div>
+        <div class="project-container">
+        <div class="project">
+            <h3>E-Commerce Platform</h3>
+            <p>Built an e-commerce platform with MERN stack.</p>
+            <a href="#" target="_blank">
+                <button class="project-btn">View Project</button>
+            </a>
+        </div>
+
+        
+        <div class="project">
+            <h3>E-Learn Platform</h3>
+            <p>Built an e-commerce platform with MERN stack.</p>
+            <a href="https://your-link.com" target="_blank">
+                <button class="project-btn">View Project</button>
+            </a>
+        </div>
+
+        
+        <div class="project">
+            <h3>Blogging website</h3>
+            <p>Built an e-commerce platform with MERN stack.</p>
+            <a href="https://your-link.com" target="_blank">
+                <button class="project-btn">View Project</button>
+            </a>
+        </div>
+
+        
+        <div class="project">
+            <h3>AI chatbot</h3>
+            <p>Built an e-commerce platform with MERN stack.</p>
+            <a href="https://your-link.com" target="_blank">
+                <button class="project-btn">View Project</button>
+            </a>
+        </div>
+    </section>
+
+    <section id="contact">
+        
+        <form action="send_mail.php" method="post">
+            <h2>Contact Me</h2>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+<footer>
+        <article><h2>Connect with me</h2>
+        <a href="linked.com/in/stiker-mukesh-kumar" id="linkedin">LinkedIn</a>
+        <a href="github" id="github">GitHub</a>
+        </article>
+        <p>&copy; 2025 Mukesh Kumar. All Rights Reserved.</p>
+</footer>
+<script type="module">
+    import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155/build/three.module.min.js";
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("bg"), antialias: true });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.z = 5;
+
+    // Background Particles
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 2000;
+    const positions = new Float32Array(particlesCount * 3);
+
+    for (let i = 0; i < particlesCount * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 10;
+    }
+
+    particlesGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    const particlesMaterial = new THREE.PointsMaterial({ color: 0xff7300, size: 0.05 });
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    function animate() {
+        requestAnimationFrame(animate);
+        particlesMesh.rotation.y += 0.0005;
+        renderer.render(scene, camera);
+    }
+
+    animate();
+</script>
+</body>
+</html>

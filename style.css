@@ -81,20 +81,29 @@ nav ul li a:hover::after {
     text-align: center;
     z-index: 10;
     width: 100%;
-    margin-bottom: 20px;
+    padding-top: 20px;
 }
+.hero-text h1 {
+    margin: 0;
+    padding-top: 40px;
+    position: relative;
+    text-align: center;
+    color: white;
+    transform: none; /* remove rotation */
+  }  
 
 section {
     padding: 50px;
     text-align: center;
 }
-#projects {
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+#projects h2{
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: whitesmoke;
+    position: relative;
+    z-index: 2;
 }
+
 .project {
     margin: 20px;
     padding: 20px;
@@ -115,7 +124,8 @@ section {
     flex-wrap: wrap;
     justify-content: center; /* Projects boxes ko center me lane ke liye */
     gap: 20px; /* Boxes ke beech gap dene ke liye */
-    max-width: 800px; /* Adjust according to your design */
+    max-width: 1000px;
+    margin: 0 auto; /* Adjust according to your design */
 }
 .project a .project-btn {
     background-color: #ff5722;
@@ -186,14 +196,6 @@ footer {
     }
   }
 
-.hero-text h1 {
-    font-size: 3em;
-    offset-path: path("M20,20 C20,100 200,0 200,100");
-    animation: move 3000ms infinite alternate ease-in-out;
-    width: 40px;
-    height: 40px;
-    background: cyan;
-  }
   
   @keyframes move {
     0% {
@@ -210,4 +212,25 @@ footer {
     width: 100%;
     height: 100%;
     z-index: -1;
+}
+
+.custom-shape-divider-bottom-1743564389 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1743564389 svg {
+    position: relative;
+    display: block;
+    width: calc(110% + 1.3px);
+    height: 140px;
+}
+
+.custom-shape-divider-bottom-1743564389 .shape-fill {
+    fill: #8A1F1F;
 }

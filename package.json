@@ -1,0 +1,28 @@
+{
+  "name": "port",
+  "version": "1.0.0",
+  "description": "",
+  "main": "portmouse.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MukeshKumar3600/Mukesh-Kumar-Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MukeshKumar3600/Mukesh-Kumar-Portfolio/issues"
+  },
+  "homepage": "https://github.com/MukeshKumar3600/Mukesh-Kumar-Portfolio#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "nodemailer": "^6.10.0"
+  }
+}

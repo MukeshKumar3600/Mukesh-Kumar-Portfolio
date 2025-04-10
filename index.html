@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mukesh Kumar - Portfolio</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+
+  <!-- Header -->
+  <header>
+    <h1>Mukesh Kumar</h1>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-text">
+      <h1>Welcome to My Portfolio</h1>
+      <p>I'm Mukesh Kumar, a Software Engineer.</p>
+      <h2>Web Developer | MERN Stack | Freelancer</h2>
+      <p>Creating Modern & Scalable Web Solutions.</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I'm Mukesh Kumar, a passionate Web Developer. I specialize in MERN Stack and PHP.</p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-container">
+      <div class="project">
+        <h3>E-Commerce Platform</h3>
+        <p>Built an e-commerce platform with MERN stack.</p>
+        <a href="#" target="_blank"><button class="project-btn">View Project</button></a>
+      </div>
+      <div class="project">
+        <h3>E-Learn Platform</h3>
+        <p>Online learning solution with MERN stack.</p>
+        <a href="https://your-link.com" target="_blank"><button class="project-btn">View Project</button></a>
+      </div>
+      <div class="project">
+        <h3>Blogging Website</h3>
+        <p>Content-sharing blog platform using MERN.</p>
+        <a href="https://your-link.com" target="_blank"><button class="project-btn">View Project</button></a>
+      </div>
+      <div class="project">
+        <h3>AI Chatbot</h3>
+        <p>Conversational AI chatbot using NLP.</p>
+        <a href="https://your-link.com" target="_blank"><button class="project-btn">View Project</button></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <form id="contactForm">
+      <h2>Contact Me</h2>
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h2>Connect with Me</h2>
+    <a href="https://www.linkedin.com/in/stiker-mukesh-kumar" target="_blank">LinkedIn</a> |
+    <a href="https://github.com/MukeshKumar3600" target="_blank">GitHub</a>
+    <p>&copy; 2025 Mukesh Kumar. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Three.js Particle Background -->
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.155/build/three.module.min.js';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg'), antialias: true });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.z = 5;
+
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 2000;
+    const positions = new Float32Array(particlesCount * 3);
+
+    for (let i = 0; i < particlesCount * 3; i++) {
+      positions[i] = (Math.random() - 0.5) * 10;
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particlesMaterial = new THREE.PointsMaterial({ color: 0xff7300, size: 0.05 });
+    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particles);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      particles.rotation.y += 0.0005;
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+
+  <!-- Contact Form Script -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+  
+      const name = this.name.value;
+      const email = this.email.value;
+      const message = this.message.value;
+  
+      try {
+        const response = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, message }),
+        });
+  
+        const result = await response.text();
+  
+        // Success Popup using SweetAlert2
+        Swal.fire({
+          icon: 'success',
+          title: 'Message Sent!',
+          text: 'Thank you for reaching out. I’ll get back to you soon!',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          backdrop: `rgba(0, 0, 0, 0.7)`
+        });
+  
+        // Reset form
+        this.reset();
+  
+        // Reload page after short delay
+        setTimeout(() => {
+          location.reload();
+        }, 2200);
+  
+      } catch (err) {
+        // Error Popup using SweetAlert2
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong while sending your message!',
+          confirmButtonColor: '#d33'
+        });
+        console.error(err);
+      }
+    });
+  </script>  
+  
+</body>
+</html>
